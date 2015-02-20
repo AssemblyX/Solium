@@ -12,6 +12,6 @@
  - Completed a verbal challenge describing objects for a Video Rental Store
  - Passed `phase 1` of hiring process but was informed that `Unit Testing` draws a red flag
  - Was given resources to learn unit testing as it will be an important part to passing `phase 2`
-   - JUnit
-   - TestNG
-   - Martin Fowler articles
+  - JUnit
+  - TestNG
+  - Martin Fowler articles
