@@ -1,6 +1,6 @@
 # Log
 
-- 2015-02-19 08:30 - 09:30
+- 2015-02-20 08:30 - 09:30
  - Created GitHub account with `README` and `log` file
  - Started research on `Unit Testing`
  - Since I'm using Eclipse will be using `JUnit` for my testing enviroment
