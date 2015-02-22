@@ -1,5 +1,8 @@
 # Log
 
+- 2015-02-22 16:30 -
+ - breakdown programming issue
+
 - 2015-02-20 08:30 - 09:30
  - Created GitHub account with `README` and `log` file
  - Started research on `Unit Testing`
