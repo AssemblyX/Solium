@@ -20,7 +20,7 @@ Three types of records, `VEST`, `PREF`, `SALE`
 	employees:[
 		{
 			employeeId:"SSSS",
-			vest:[{dateVest:"YYYMMDD", grantPrice:x.xx}], 
+			vest:[{dateVest:"YYYMMDD", vestAmount:x, grantPrice:x.xx}], 
 			pref:[{dateEffect:"YYYYMMDD", multiplier:x.x}], 
 			sale:[{dateSale:"YYYYMMDD", amount:x, marketPrice:x.xx}]
 		}
@@ -37,6 +37,26 @@ PERF,002B,20130102,1.5
 20140101,1.00
 */
 
+// Sample JSONObject
+{
+	recordCount:5, 
+	dateCut:"20140101", 
+	marketPrice:1.00, 
+	employees:[
+		{
+			employeeId:"001B",
+			vest:[{dateVest:"20120102", vestAmount:1000, grantPrice:0.45}], 
+			pref:[{dateEffect:"20130102", multiplier:1.5}], 
+			sale:[{dateSale:"20120402", amount:500, marketPrice:1.00}]
+		},
+		{
+			employeeId:"002B",
+			vest:[{dateVest:"20120102", vestAmount:1000, grantPrice:0.45}], 
+			pref:[{dateEffect:"20130102", multiplier:1.5}], 
+			sale:[]
+		}
+	]
+}
 ```
 
 
