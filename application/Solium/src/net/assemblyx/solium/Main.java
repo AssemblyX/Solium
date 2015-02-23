@@ -18,8 +18,9 @@ public class Main {
 	public static final String TYPE_PERF = "PERF";
 	public static final String TYPE_SALE = "SALE";
 	
-	private JSONObject mJSONObject = new JSONObject();
+	private JSONObject mJSONData = new JSONObject();
 	private ArrayList<String> mListSort = new ArrayList<String>();
+	private String mOutput = "";
 	
 	public static void main(String[] args) {
 		Main main = new Main();
@@ -37,15 +38,14 @@ public class Main {
 				counter++;
 				if(counter > 1 && counter < lineCount){
 					setListSort(line);
-					System.out.println("Loop");
 				}else if(counter == 1){
 					recordCount = Tools.getNumeric(line);
 					lineCount = recordCount+2;
-					mJSONObject.put("recordCount", recordCount);
+					mJSONData.put("recordCount", recordCount);
 				}else{
 					String[] split = line.split(",");
-					mJSONObject.put("dateCut", split[0]);
-					mJSONObject.put("marketPrice", split[1]);
+					mJSONData.put("dateCut", split[0]);
+					mJSONData.put("marketPrice", split[1]);
 				}
 			 }
 		} catch (JSONException e) {
@@ -56,7 +56,6 @@ public class Main {
 	}
 	
 	//Put date first for sorting
-	// Change type to number
 	private void setListSort(String line){
 		String[] split = line.split(",");
 		//set three constants, Date, Type, Employee
@@ -72,7 +71,7 @@ public class Main {
 		Collections.sort(mListSort);
 		ArrayList<String> employeeList = new ArrayList<String>();
 		try {
-			mJSONObject.put("employees", new JSONArray());
+			mJSONData.put("employees", new JSONArray());
 			for(int i=0; i<mListSort.size();i++){
 				String[] split = mListSort.get(i).split(",");
 				//check if we have employee in json object
@@ -83,17 +82,42 @@ public class Main {
 				}
 				addEmployeeRecord(employeeList.indexOf(split[2]), split);
 			}
-			System.out.println(mJSONObject);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		loopJSONData();
+	}
+	
+	//loop mJSONData
+	private void loopJSONData(){
+		try {
+			JSONArray employees = mJSONData.getJSONArray("employees");
+			for(int i=0; i<employees.length();i++){
+				JSONObject employee = employees.getJSONObject(i);
+				if(employee.getJSONArray(TYPE_SALE).length() > 0)doTypeSale(employee);
+				
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		System.out.println(mJSONData);
+	}
+	
+	private void doTypeSale(JSONObject employee) {
+		try {
+			JSONArray sales = employee.getJSONArray(TYPE_SALE);
+			JSONArray vests = employee.getJSONArray(TYPE_VEST);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
+	//Create new employee record object in JSONObject
 	private void addEmployeeRecord(int index, String[] record){
 		JSONObject jObject = new JSONObject();
 		try{
-			JSONObject jemployee = (JSONObject) mJSONObject.getJSONArray("employees").get(index);
+			JSONObject jemployee = (JSONObject) mJSONData.getJSONArray("employees").get(index);
 			switch(record[1]){
 			case TYPE_VEST:
 				jObject.put("dateVest", record[0]);
@@ -112,15 +136,13 @@ public class Main {
 				jObject.put("marketPrice", record[4]);
 				jemployee.getJSONArray(TYPE_SALE).put(jObject);
 				break;
-
 			}
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	//Create new employee object
+	//Create new employee object in JSONObject
 	private void setEmployeeObject(String employee) {
 		JSONObject JSONemployee = new JSONObject();
 		try {
@@ -128,9 +150,8 @@ public class Main {
 			JSONemployee.put(TYPE_VEST, new JSONArray());
 			JSONemployee.put(TYPE_PERF, new JSONArray());
 			JSONemployee.put(TYPE_SALE, new JSONArray());
-			mJSONObject.getJSONArray("employees").put(JSONemployee);
+			mJSONData.getJSONArray("employees").put(JSONemployee);
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

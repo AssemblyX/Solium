@@ -1,6 +1,8 @@
 # Log
 
-- 2015-02-23 07:00 - 07:30 - 9:30
+- 2015-02-23 10:15 - 
+
+- 2015-02-23 07:00 - 09:30
  - building sorting to arrange inputs by date
  - dumping lines into an ArrayList and using Collection.sort
  - created the following methods to confirm theory :
@@ -14,12 +16,12 @@
 - 2015-02-22 18:15 -19:30
  - started problem breakdown
  - create json object layout
- - found two issues with PREF and SALE
+ - found two issues with PERF and SALE
  - sent out email in regards to issues
 
 - 2015-02-22 16:30 -17:15
  - read over issue
- - created simple objects
+ - Planned out simple objects
 
 - 2015-02-20 08:30 - 09:30
  - Created GitHub account with `README` and `log` file
