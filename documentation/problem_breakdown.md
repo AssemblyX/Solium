@@ -20,9 +20,9 @@ Three types of records, `VEST`, `PREF`, `SALE`
 	employees:[
 		{
 			employeeId:"SSSS",
-			vest:[{dateVest:"YYYMMDD", units:x, grantPrice:x.xx}], 
-			pref:[{dateEffect:"YYYYMMDD", multiplier:x.x}], 
-			sale:[{dateSale:"YYYYMMDD", amount:x, marketPrice:x.xx}]
+			VEST:[{dateVest:"YYYMMDD", units:x, grantPrice:x.xx}], 
+			PERF:[{dateEffect:"YYYYMMDD", multiplier:x.x}], 
+			SALE:[{dateSale:"YYYYMMDD", amount:x, marketPrice:x.xx}]
 		}
 	]
 }
@@ -50,36 +50,31 @@ PERF,002B,20130102,1.5
 	employees:[
 		{
 			employeeId:"001B",
-			vest:[
+			VEST:[
 				{dateVest:"20120101", units:1000, grantPrice:0.45},
 				{dateVest:"20120102", units:1000, grantPrice:0.45},
 				{dateVest:"20130101", units:1500, grantPrice:0.50}
 			], 
-			pref:[{dateEffect:"20130102", multiplier:1.5}], 
-			sale:[{dateSale:"20120402", amount:500, marketPrice:1.00}]
+			PERF:[{dateEffect:"20130102", multiplier:1.5}], 
+			SALE:[{dateSale:"20120402", amount:500, marketPrice:1.00}]
 		},
 		{
 			employeeId:"002B",
-			vest:[
+			VEST:[
 				{dateVest:"20120102", units:1000, grantPrice:0.45},
 				{dateVest:"20130101", units:1000, grantPrice:0.50}
 			], 
-			pref:[{dateEffect:"20130102", multiplier:1.5}], 
-			sale:[]
+			PERF:[{dateEffect:"20130102", multiplier:1.5}], 
+			SALE:[]
 		}
 		{
 			employeeId:"003B",
-			vest:[{dateVest:"20130101", units:1000, grantPrice:0.50}], 
-			pref:[], 
-			sale:[]
+			VEST:[{dateVest:"20130101", units:1000, grantPrice:0.50}], 
+			PERF:[], 
+			SALE:[]
 		}
 	]
 }
 ```
-## Issues
-1) Can there be multiple PREF and if so do they compound? For example if there are two PREF on 2010 and 2014. All units before 2010 would receive (0000to2010TotalUnits x 2010Pref x 2014Pref) + (2011to2014TotalUnits x 2014Pref)
-
-2) Are SALE subtracted from the earliest VEST?
-
 
 
