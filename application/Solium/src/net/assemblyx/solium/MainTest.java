@@ -7,7 +7,7 @@ public class MainTest {
 	@Test
 	public void testSetJSON() {
 		Main main = new Main();
-		main.setJSON(this.getClass().getResourceAsStream("input.def"));
+		main.loopInput(this.getClass().getResourceAsStream("input.def"));
 	}
 
 }
