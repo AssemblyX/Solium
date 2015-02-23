@@ -1,6 +1,9 @@
 # Log
 
-- 2015-02-22 16:30 -
+- 2015-02-22 18:15 -
+ - create json object layout
+
+- 2015-02-22 16:30 -17:15
  - breakdown programming issue
 
 - 2015-02-20 08:30 - 09:30
