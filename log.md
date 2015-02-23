@@ -1,6 +1,9 @@
 # Log
 
-- 2015-02-23 10:15 - 
+- 2015-02-23 10:15 - 13:00
+ - was building JSON flowchart but have decided to try a different approach
+ - using inheritance/polymorphism class model
+ - will complete JSON approach after
 
 - 2015-02-23 07:00 - 09:30
  - building sorting to arrange inputs by date
