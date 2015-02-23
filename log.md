@@ -1,7 +1,10 @@
 # Log
 
-- 2015-02-22 18:15 -
+- 2015-02-22 18:15 -19:30
+ - started problem breakdown
  - create json object layout
+ - found two issues with PREF and SALE
+ - sent out email in regards to issues
 
 - 2015-02-22 16:30 -17:15
  - breakdown programming issue
