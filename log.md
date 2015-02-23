@@ -7,7 +7,7 @@
     - main
     - loopInput
     - setListSort
-    - loopSortList
+    - loopListSort
     - addEmployeeRecord
     - setEmployeeObject
 

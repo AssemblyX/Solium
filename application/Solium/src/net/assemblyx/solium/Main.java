@@ -52,7 +52,7 @@ public class Main {
 			e.printStackTrace();
 		}
 		scanner.close();
-		loopSortList();
+		loopListSort();
 	}
 	
 	//Put date first for sorting
@@ -68,7 +68,7 @@ public class Main {
 		mListSort.add(sort);
 	}
 
-	private void loopSortList() {
+	private void loopListSort() {
 		Collections.sort(mListSort);
 		ArrayList<String> employeeList = new ArrayList<String>();
 		try {
