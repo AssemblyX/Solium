@@ -1,5 +1,16 @@
 # Log
 
+- 2015-02-23 07:00 - 07:30 - 9:30
+ - building sorting to arrange inputs by date
+ - dumping lines into an ArrayList and using Collection.sort
+ - created the following methods to confirm theory :
+    - main
+    - loopInput
+    - setListSort
+    - loopSortList
+    - addEmployeeRecord
+    - setEmployeeObject
+
 - 2015-02-22 18:15 -19:30
  - started problem breakdown
  - create json object layout
