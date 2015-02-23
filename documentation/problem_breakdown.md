@@ -10,7 +10,7 @@ Three types of records, `VEST`, `PREF`, `SALE`
 
 ## JSON
 
-//Template
+/* Template */
 ```javascript
 {
 	recordCount:x, 
@@ -25,6 +25,8 @@ Three types of records, `VEST`, `PREF`, `SALE`
 		}
 	]
 }
+
+//
 ```
 
 
