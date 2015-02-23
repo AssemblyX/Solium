@@ -6,6 +6,12 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
+	public static final int RECORD_TYPE = 0;
+	public static final int RECORD_EMPLOYEE = 1;
+	public static final int RECORD_DATE = 2;
+	public static final int RECORD_UNITS = 3;
+	public static final int RECORD_PRICE = 4;
+	public static final int RECORD_MULTIPLY = 3;
 	public static final String TYPE_VEST = "VEST";
 	public static final String TYPE_PERF = "PERF";
 	public static final String TYPE_SALE = "SALE";
@@ -39,24 +45,30 @@ public class Main {
 			}
 		 }
 		scanner.close();
-		System.out.println(mEmployees);
 	}
 	
-	private void addRecord(String record){
-		String[] split = record.split(",");
-		if(!mEmployees.containsKey(split[1])){
-			mEmployees.put(split[1], new Employee());
-		}
-		
-		switch(split[0]){
+	private void addRecord(String line){
+		Record record = new Record();
+		String[] split = line.split(",");
+		String employeeId = split[RECORD_EMPLOYEE];
+		//check if employee created
+		if(!mEmployees.containsKey(employeeId))
+			mEmployees.put(employeeId, new Employee());
+		//Set record type and date
+		String recordType = split[RECORD_TYPE];
+		record.setType(recordType);
+		record.setDate(Integer.parseInt(split[RECORD_DATE]));
+		//Determine what type of record adding
+		switch(recordType){
 		case TYPE_VEST:
-			mEmployees.get(split[1]).addVest(split);
+		case TYPE_SALE:
+			record.setUnits(Integer.parseInt(split[RECORD_UNITS]));
+			record.setPrice(Double.parseDouble(split[RECORD_PRICE]));
 			break;
 		case TYPE_PERF:
-			break;
-		case TYPE_SALE:
+			record.setMulitply(Double.parseDouble(split[RECORD_MULTIPLY]));
 			break;
 		}
-		
+		mEmployees.get(employeeId).addRecord(record);
 	}
 }

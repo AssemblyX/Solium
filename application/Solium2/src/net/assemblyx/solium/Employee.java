@@ -4,15 +4,10 @@ import java.util.ArrayList;
 
 public class Employee {
 	private String mEmployeeId;
-	private ArrayList<VestSale> mVest;
-	private ArrayList<VestSale> mSale;
-	private ArrayList<Perf> mPerf;
-
+	private ArrayList<Record> mRecords;
 	
 	Employee(){
-		mVest = new ArrayList<VestSale>();
-		mSale = new ArrayList<VestSale>();
-		mPerf = new ArrayList<Perf>();
+		mRecords = new ArrayList<Record>();
 	}
 	
 	public void setEmployeeId(String employeeId){
@@ -23,7 +18,11 @@ public class Employee {
 		return mEmployeeId;
 	}
 	
-	public void addVest(String[] split2){
-		VestSale vestSale = new VestSale();
+	public ArrayList<Record> getRecords(){
+		return mRecords;
+	}
+	
+	public void addRecord(Record record){
+		mRecords.add(record);
 	}
 }

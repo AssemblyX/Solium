@@ -1,5 +1,8 @@
 # Log
 
+- 2015-02-23 13:30 - 
+ - 
+
 - 2015-02-23 10:15 - 13:00
  - was building JSON flowchart but have decided to try a different approach
  - using inheritance/polymorphism class model
