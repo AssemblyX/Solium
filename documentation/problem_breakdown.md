@@ -27,7 +27,7 @@ Three types of records, `VEST`, `PREF`, `SALE`
 	]
 }
 
-// Sample data in
+/* Sample data in
 5
 VEST,001B,20120102,1000,0.45
 SALE,001B,20120402,500,1.00
@@ -35,7 +35,7 @@ VEST,002B,20120102,1000,0.45
 PERF,001B,20130102,1.5
 PERF,002B,20130102,1.5
 20140101,1.00
-
+*/
 
 ```
 
