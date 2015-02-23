@@ -7,7 +7,8 @@
  - sent out email in regards to issues
 
 - 2015-02-22 16:30 -17:15
- - breakdown programming issue
+ - read over issue
+ - created simple objects
 
 - 2015-02-20 08:30 - 09:30
  - Created GitHub account with `README` and `log` file
