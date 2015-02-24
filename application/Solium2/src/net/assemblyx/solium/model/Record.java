@@ -29,25 +29,53 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */ 
 
-package net.assemblyx.solium;
+package net.assemblyx.solium.model;
 
-import org.junit.Test;
+public class Record {
+	private String mType;
+	private int mDate;
+	private int mUnits;
+	private double mPrice;
+	private double mMultiply;
+	
+	public void setType(String type){
+		mType = type;
+	}
+	
+	public void setDate(int date){
+		mDate = date;
+	}
 
-/**
- * 
- * MainTest Class used for developing application 
- * and testing methods
- * 
- * @author Kenneth Desormeaux
- *
- */
-
-public class MainTest {
-
-	@Test
-	public void test() {
-		Main main = new Main();
-		main.init(this.getClass().getResourceAsStream("input.def"));
+	public void setUnits(int units){
+		mUnits = units;
+	}
+	
+	public void setPrice(double price){
+		mPrice = price;
+	}
+	
+	public void setMulitply(double multiply){
+		mMultiply = multiply;
+	}
+	
+	public String getType(){
+		return mType;
+	}
+	
+	public int getDate(){
+		return mDate;
+	}
+	
+	public int getUnits(){
+		return mUnits;
+	}
+	
+	public double getPrice(){
+		return mPrice;
+	}
+	
+	public double getMultiply(){
+		return mMultiply;
 	}
 
 }

@@ -29,25 +29,36 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */ 
 
-package net.assemblyx.solium;
+package net.assemblyx.solium.model;
 
-import org.junit.Test;
+import java.util.ArrayList;
 
-/**
- * 
- * MainTest Class used for developing application 
- * and testing methods
- * 
- * @author Kenneth Desormeaux
- *
- */
+public class EmployeeRecords extends Employee{
+	private String mSales;
+	private String mVests;
+	private ArrayList<Record> mRecords = new ArrayList<Record>();
 
-public class MainTest {
-
-	@Test
-	public void test() {
-		Main main = new Main();
-		main.init(this.getClass().getResourceAsStream("input.def"));
+	public void setSales(double sales){
+		mSales = String.format("%.2f", sales);
 	}
-
+	
+	public void setVest(double vests) {
+		mVests = String.format("%.2f", vests); 
+		
+	}
+	
+	public ArrayList<Record> getRecords(){
+		return mRecords;
+	}
+	
+	public void addRecord(Record record){
+		mRecords.add(record);
+	}
+	
+	@Override
+	public String toString(){
+		String str = getEmployeeId() + "," + mVests;
+		if(mSales != null)str += "," + mSales;
+		return str;
+	}
 }

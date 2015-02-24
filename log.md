@@ -1,5 +1,11 @@
 # Log
 
+- 2015-02-23 19:30 - 23:45
+ - cleaned up objects
+ - ended up created new objects 
+ - fixed names to make more sense
+ - added comments 
+
 - 2015-02-23 13:30 - 17:30
  - completed class model approach
 

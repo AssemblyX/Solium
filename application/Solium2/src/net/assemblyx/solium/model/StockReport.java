@@ -29,25 +29,33 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */ 
 
-package net.assemblyx.solium;
+package net.assemblyx.solium.model;
 
-import org.junit.Test;
+import java.util.HashMap;
+import java.util.Map;
 
-/**
- * 
- * MainTest Class used for developing application 
- * and testing methods
- * 
- * @author Kenneth Desormeaux
- *
- */
-
-public class MainTest {
-
-	@Test
-	public void test() {
-		Main main = new Main();
-		main.init(this.getClass().getResourceAsStream("input.def"));
+public class StockReport {
+	private int mDateCut;
+	private double mMarketPrice;
+	private Map<String, EmployeeRecords> mEmployeesRecords = new HashMap<String, EmployeeRecords>(); 
+	
+	public void setDateCut(int date){
+		mDateCut = date;
 	}
-
+	
+	public void setmMarketPrice(double price){
+		mMarketPrice = price;
+	}
+	
+	public Map<String, EmployeeRecords> getEmployeesRecords(){
+		return mEmployeesRecords;
+	}
+	
+	public int getDateCut(){
+		return mDateCut;
+	}
+	
+	public double getMarketPrice(){
+		return mMarketPrice;
+	}
 }

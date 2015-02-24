@@ -29,25 +29,16 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */ 
 
-package net.assemblyx.solium;
+package net.assemblyx.solium.model;
 
-import org.junit.Test;
-
-/**
- * 
- * MainTest Class used for developing application 
- * and testing methods
- * 
- * @author Kenneth Desormeaux
- *
- */
-
-public class MainTest {
-
-	@Test
-	public void test() {
-		Main main = new Main();
-		main.init(this.getClass().getResourceAsStream("input.def"));
+public class Employee {
+	private String mEmployeeId;
+	
+	public void setEmployeeId(String employeeId){
+		mEmployeeId = employeeId;
 	}
-
+	
+	public String getEmployeeId(){
+		return mEmployeeId;
+	}
 }
