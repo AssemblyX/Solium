@@ -9,7 +9,7 @@ public class MainTest {
 	@Test
 	public void test() {
 		Main main = new Main();
-		main.loopInput(this.getClass().getResourceAsStream("input.def"));
+		main.runapp(this.getClass().getResourceAsStream("input.def"));
 	}
 
 }

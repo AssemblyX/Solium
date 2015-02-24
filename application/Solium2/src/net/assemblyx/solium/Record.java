@@ -1,7 +1,6 @@
 package net.assemblyx.solium;
 
 public class Record {
-	
 	private String mType;
 	private int mDate;
 	private int mUnits;

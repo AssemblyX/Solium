@@ -4,71 +4,24 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class Main {
-	public static final int RECORD_TYPE = 0;
-	public static final int RECORD_EMPLOYEE = 1;
-	public static final int RECORD_DATE = 2;
-	public static final int RECORD_UNITS = 3;
-	public static final int RECORD_PRICE = 4;
-	public static final int RECORD_MULTIPLY = 3;
-	public static final String TYPE_VEST = "VEST";
-	public static final String TYPE_PERF = "PERF";
-	public static final String TYPE_SALE = "SALE";
-	
-	private int mDateCut;
-	private double mMarketPrice;
-	private Map<String, Employee> mEmployees = new HashMap<String, Employee>();
 	public static void main(String[] args) {
 		Main main = new Main();
-		main.loopInput(System.in);
+		main.runapp(System.in);
 	}
 	
-	public void loopInput(InputStream inputStream){
-		int counter = 0;
-		int recordCount = 0;
-		int lineCount = 0;
-		Scanner scanner = new Scanner(inputStream);
-		while (scanner.hasNextLine()) {
-			String line = scanner.nextLine();
-			counter++;
-			if(counter > 1 && counter < lineCount){
-				addRecord(line);
-			}else if(counter == 1){
-				recordCount = Integer.parseInt(line);
-				lineCount = recordCount+2;
-
-			}else{
-				String[] split = line.split(",");
-				mDateCut = Integer.parseInt(split[0]);
-				mMarketPrice = Double.parseDouble(split[1]);
-			}
-		 }
-		scanner.close();
+	public void runapp(InputStream inputStream){
+		Parser parser = new Parser(inputStream);
+		new Calculate(parser);
+		printScreen(parser);
 	}
 	
-	private void addRecord(String line){
-		Record record = new Record();
-		String[] split = line.split(",");
-		String employeeId = split[RECORD_EMPLOYEE];
-		//check if employee created
-		if(!mEmployees.containsKey(employeeId))
-			mEmployees.put(employeeId, new Employee());
-		//Set record type and date
-		String recordType = split[RECORD_TYPE];
-		record.setType(recordType);
-		record.setDate(Integer.parseInt(split[RECORD_DATE]));
-		//Determine what type of record adding
-		switch(recordType){
-		case TYPE_VEST:
-		case TYPE_SALE:
-			record.setUnits(Integer.parseInt(split[RECORD_UNITS]));
-			record.setPrice(Double.parseDouble(split[RECORD_PRICE]));
-			break;
-		case TYPE_PERF:
-			record.setMulitply(Double.parseDouble(split[RECORD_MULTIPLY]));
-			break;
+	public void printScreen(Parser parser){
+		Map<String, Employee> employees = new TreeMap<String, Employee>(parser.employees);
+		for(Map.Entry<String, Employee> entry : employees.entrySet()){
+			System.out.println(entry.getValue().returnReport());
 		}
-		mEmployees.get(employeeId).addRecord(record);
 	}
 }

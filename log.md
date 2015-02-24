@@ -1,7 +1,7 @@
 # Log
 
-- 2015-02-23 13:30 - 
- - 
+- 2015-02-23 13:30 - 17:30
+ - completed class model approach
 
 - 2015-02-23 10:15 - 13:00
  - was building JSON flowchart but have decided to try a different approach
