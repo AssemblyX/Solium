@@ -12,6 +12,8 @@ public class Parser {
 	public static final int RECORD_UNITS = 3;
 	public static final int RECORD_PRICE = 4;
 	public static final int RECORD_MULTIPLY = 3;
+	public static final int RECORD_DATECUT = 0;
+	public static final int RECORD_MARKETPRICE = 1;
 	public static final String TYPE_VEST = "VEST";
 	public static final String TYPE_PERF = "PERF";
 	public static final String TYPE_SALE = "SALE";
@@ -36,8 +38,8 @@ public class Parser {
 
 			}else{
 				String[] split = line.split(",");
-				dateCut = Integer.parseInt(split[0]);
-				marketPrice = Double.parseDouble(split[1]);
+				dateCut = Integer.parseInt(split[RECORD_DATECUT]);
+				marketPrice = Double.parseDouble(split[RECORD_MARKETPRICE]);
 			}
 		 }
 		scanner.close();
