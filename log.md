@@ -1,4 +1,8 @@
 # Log
+- 2015-02-25 13:00 - 16:00
+ - took crash course on gradle
+ - found my test files needed to moved 
+ - pretty sure the build will work not tested
 
 - 2015-02-24 11:00 - 15:00
  - fixed logic in calculator
