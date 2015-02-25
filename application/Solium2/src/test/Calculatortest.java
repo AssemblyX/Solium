@@ -1,4 +1,4 @@
-package net.assemblyx.solium.controler;
+package test;
 
 import static org.junit.Assert.*;
 
@@ -6,11 +6,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
+import net.assemblyx.solium.controler.StockReportCalculate;
 import net.assemblyx.solium.model.Record;
 
 import org.junit.Test;
 
-public class StockReportCalculateTest {
+public class Calculatortest {
 
 	@Test
 	public void calculateVests() {
@@ -120,4 +121,5 @@ public class StockReportCalculateTest {
 		assertEquals(0, rsVest.get(20130101).getUnits());
 		assertEquals(800, rsVest.get(20140101).getUnits());
 	}
+
 }

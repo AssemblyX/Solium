@@ -1,12 +1,13 @@
-package net.assemblyx.solium;
+package test;
 
 import static org.junit.Assert.*;
+import net.assemblyx.solium.StockReportScreen;
 import net.assemblyx.solium.controler.StockReportCalculate;
 import net.assemblyx.solium.controler.StockReportParser;
 
 import org.junit.Test;
 
-public class StockReportScreenTest {
+public class Inputtest {
 
 	@Test
 	public void test() {
@@ -89,4 +90,5 @@ public class StockReportScreenTest {
 		str += "002B,550.00\n";
 		assertEquals(str, strOut);
 	}
+
 }
