@@ -146,7 +146,6 @@ public class StockReportCalculate {
 					 * subtract amount from Vest
 					 */
 					if((entryVest.getValue().getUnits() - totalSold)>=0){
-						System.out.println(entryVest.getValue().getUnits() - totalSold);
 						entryVest.getValue().setUnits(entryVest.getValue().getUnits() - totalSold);
 						totalSales += calculateSales(totalSold, entrySale.getValue().getPrice(), entryVest.getValue().getPrice());
 						break;
