@@ -31,20 +31,17 @@
 
 package net.assemblyx.solium.model;
 
+/**
+ * Model for variables in a record
+ * 
+ * @author Kenneth Desormeaux
+ *
+ */
 public class Record {
-	private String mType;
-	private int mDate;
+
 	private int mUnits;
 	private double mPrice;
 	private double mMultiply;
-	
-	public void setType(String type){
-		mType = type;
-	}
-	
-	public void setDate(int date){
-		mDate = date;
-	}
 
 	public void setUnits(int units){
 		mUnits = units;
@@ -56,14 +53,6 @@ public class Record {
 	
 	public void setMulitply(double multiply){
 		mMultiply = multiply;
-	}
-	
-	public String getType(){
-		return mType;
-	}
-	
-	public int getDate(){
-		return mDate;
 	}
 	
 	public int getUnits(){

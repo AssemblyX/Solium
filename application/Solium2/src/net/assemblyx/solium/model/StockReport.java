@@ -34,6 +34,14 @@ package net.assemblyx.solium.model;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Holds all the Employees for a report
+ * 
+ * Stores the cut off date and market price
+ * 
+ * @author Kenneth Desormeaux
+ *
+ */
 public class StockReport {
 	private int mDateCut;
 	private double mMarketPrice;

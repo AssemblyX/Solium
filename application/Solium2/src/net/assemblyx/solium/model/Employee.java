@@ -31,6 +31,12 @@
 
 package net.assemblyx.solium.model;
 
+/**
+ * Holds the id for an employee
+ * 
+ * @author assemblyx
+ *
+ */
 public class Employee {
 	private String mEmployeeId;
 	

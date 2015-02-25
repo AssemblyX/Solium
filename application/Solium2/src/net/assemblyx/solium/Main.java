@@ -31,14 +31,6 @@
 
 package net.assemblyx.solium;
 
-import java.io.InputStream;
-import java.util.Map;
-import java.util.TreeMap;
-import net.assemblyx.solium.controler.Calculate;
-import net.assemblyx.solium.controler.Parser;
-import net.assemblyx.solium.model.EmployeeRecords;
-import net.assemblyx.solium.model.StockReport;
-
 /**
  * 
  * Main Class used for creating a StockReport System.in 
@@ -49,49 +41,12 @@ import net.assemblyx.solium.model.StockReport;
  */
 
 public class Main {
-	
 	/**
 	 * default method used to start the .jar file
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Main main = new Main();
-		main.init(System.in);
-	}
-	
-	/**
-	 * starts the process by parsing, calculating and then printing 
-	 * data form the input stream
-	 * @param inputStream
-	 */
-	public void init(InputStream inputStream){
-		Parser parser = new Parser();
-		Calculate calculator = new Calculate();
-		/**
-		 * Sends InputStream input.def to parser then passes
-		 * then sends the result from the parser through calculator
-		 */
-		StockReport stockReports = calculator.init(parser.init(inputStream));
-		/**
-		 * sends the result from calculator to print out
-		 */
-		printScreen(stockReports);
-	}
-	
-	/**
-	 * loops all the employees and prints their data
-	 * @param stockReport
-	 */
-	public void printScreen(StockReport stockReport){
-		/**
-		 * gets all the employees in the report
-		 */
-		Map<String, EmployeeRecords> employeesStocks = new TreeMap<String, EmployeeRecords>(stockReport.getEmployeesRecords());
-		/**
-		 * loop though each employee and print out their calculations on a new line 
-		 */
-		for(Map.Entry<String, EmployeeRecords> entry : employeesStocks.entrySet()){
-			System.out.println(entry.getValue().toString());
-		}
+		StockReportScreen stockReportScreen = new StockReportScreen();
+		stockReportScreen.screenInput(System.in);
 	}
 }

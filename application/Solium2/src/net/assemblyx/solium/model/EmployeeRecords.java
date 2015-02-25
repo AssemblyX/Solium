@@ -31,34 +31,71 @@
 
 package net.assemblyx.solium.model;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
+/**
+ * Holds all records for an employee
+ * extends employee
+ * 
+ * @author Kenneth Desormeaux
+ *
+ */
 public class EmployeeRecords extends Employee{
-	private String mSales;
-	private String mVests;
-	private ArrayList<Record> mRecords = new ArrayList<Record>();
-
-	public void setSales(double sales){
-		mSales = String.format("%.2f", sales);
+	private String mTotalSales;
+	private String mTotalVests;
+	private Map<Integer, Record> mVest = new HashMap<Integer, Record>();
+	private Map<Integer, Record> mSale = new HashMap<Integer, Record>();
+	private Map<Integer, Record> mPerf = new HashMap<Integer, Record>();
+	
+	public void setTotalSales(double sales){
+		mTotalSales = String.format("%.2f", sales);
 	}
 	
-	public void setVest(double vests) {
-		mVests = String.format("%.2f", vests); 
+	public void setTotalVests(double vests) {
+		mTotalVests = String.format("%.2f", vests); 
 		
 	}
 	
-	public ArrayList<Record> getRecords(){
-		return mRecords;
+	public void putVests(int date, Record record){
+		mVest.put(date, record);
 	}
 	
-	public void addRecord(Record record){
-		mRecords.add(record);
+	public void sortVests(){
+		setVests(new TreeMap<Integer, Record>(getVests()));
+	}
+	
+	public void setVests(Map<Integer, Record> records){
+		mVest = records;
+	}
+	
+	public void putSales(int date, Record record){
+		mSale.put(date, record);
+	}
+	
+	public void putPerfs(int date, Record record){
+		mPerf.put(date, record);
+	}
+	
+	public Map<Integer, Record> getVests(){
+		return mVest;
+	}
+	
+	public Map<Integer, Record> getSales(){
+		return mSale;
+	}
+	
+	public Map<Integer, Record> getPerfs(){
+		return mPerf;
 	}
 	
 	@Override
 	public String toString(){
-		String str = getEmployeeId() + "," + mVests;
-		if(mSales != null)str += "," + mSales;
+		String str = getEmployeeId() + "," + mTotalVests;
+		if(mTotalSales != null)str += "," + mTotalSales;
 		return str;
 	}
+
+
 }

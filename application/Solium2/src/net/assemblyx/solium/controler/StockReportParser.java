@@ -32,7 +32,6 @@
 package net.assemblyx.solium.controler;
 
 import java.io.InputStream;
-import java.util.Map;
 import java.util.Scanner;
 import net.assemblyx.solium.model.EmployeeRecords;
 import net.assemblyx.solium.model.Record;
@@ -51,7 +50,7 @@ import net.assemblyx.solium.model.StockReport;
  *
  */
 
-public class Parser {
+public class StockReportParser {
 	/**
 	 * constants used for position in array after splitting
 	 * the record using .split(",")
@@ -64,25 +63,24 @@ public class Parser {
 	public static final int RECORD_UNITS = 3;
 	public static final int RECORD_MULTIPLY = 3;
 	public static final int RECORD_PRICE = 4;
-	
 	/**
 	 * constants used for the different types of records
 	 */
 	public static final String TYPE_VEST = "VEST";
 	public static final String TYPE_PERF = "PERF";
 	public static final String TYPE_SALE = "SALE";
-
+	
+	/**
+	 * Report created from input file
+	 */
+	private StockReport mStockReport;
 	/**
 	 * Loops the input stream input.def file
 	 * @param inputStream
 	 * @return
 	 */
 	public StockReport init(InputStream inputStream){
-		/**
-		 * First initiation of the StockReport Model
-		 * that gets passed to calculator and then printer
-		 */
-		StockReport stockReport = new StockReport();
+		mStockReport = new StockReport();
 		/**
 		 * counters used to determine if the Scanner is 
 		 * on the first line or the last line
@@ -94,17 +92,14 @@ public class Parser {
 		 */
 		Scanner scanner = new Scanner(inputStream);
 		while (scanner.hasNextLine()) {
-			/**
-			 * line used for capturing each line in input.def
-			 */
 			String line = scanner.nextLine();
 			counter++;
 			/**
 			 * check and make sure we are not first line 
-			 * or last line, if not add this record
+			 * or last line, if not parserRecord
 			 */
 			if(counter > 1 && counter < lineCount){
-				addRecord(line, stockReport.getEmployeesRecords());
+				parseRecord(line);
 			/**
 			 * if on the first line calculate how many lines
 			 * there are by adding two to the value of the 
@@ -118,68 +113,74 @@ public class Parser {
 			 */
 			}else{
 				String[] split = line.split(",");
-				stockReport.setDateCut(Integer.parseInt(split[RECORD_DATECUT]));
-				stockReport.setmMarketPrice(Double.parseDouble(split[RECORD_MARKETPRICE]));
+				mStockReport.setDateCut(Integer.parseInt(split[RECORD_DATECUT]));
+				mStockReport.setmMarketPrice(Double.parseDouble(split[RECORD_MARKETPRICE]));
 			}
 		 }
 		scanner.close();
-		return stockReport;
+		return mStockReport;
 	}
 	
 	/**
-	 * adds a recorded to employeesStock Model
-	 * 
+	 * Parsers each record and checks to make sure employee has been added
+	 * adds recorded to correct employee and type
 	 * @param line
-	 * @param employeesStocks
 	 */
-	private void addRecord(String line, Map<String, EmployeeRecords> employeesStocks){
+	private void parseRecord(String line){
+		String[] recordSplit = line.split(",");
+		String employeeId = recordSplit[RECORD_EMPLOYEE];
+		/**
+		 * check if the key matching employeeId is found in 
+		 * employeesStocks if not create a new EmployeeStocks 
+ 		 * with employeeId as key
+		 */
+		
+		if(!mStockReport.getEmployeesRecords().containsKey(employeeId)){
+			mStockReport.getEmployeesRecords().put(employeeId, new EmployeeRecords());
+			mStockReport.getEmployeesRecords().get(employeeId).setEmployeeId(employeeId);
+		}
+		int recordDate = Integer.parseInt(recordSplit[RECORD_DATE]);
+		Record record = createRecord(recordSplit);
+		switch(recordSplit[RECORD_TYPE]){
+		case TYPE_VEST:
+			mStockReport.getEmployeesRecords().get(employeeId).putVests(recordDate, record);
+			break;
+		case TYPE_SALE:	
+			mStockReport.getEmployeesRecords().get(employeeId).putSales(recordDate, record);
+			break;
+		case TYPE_PERF:
+			mStockReport.getEmployeesRecords().get(employeeId).putPerfs(recordDate, record);
+			break;
+		}
+	}
+	
+	/**
+	 * returns Record
+	 * @param recordSplit
+	 * @return
+	 */
+	private Record createRecord(String[] recordSplit){
 		/**
 		 * Start a new Record model
 		 */
 		Record record = new Record();
 		/**
-		 * split the string from the input.def line
-		 */
-		String[] split = line.split(",");
-		/**
-		 * find employeeId for the input.def line
-		 */
-		String employeeId = split[RECORD_EMPLOYEE];
-		/**
-		 * check if the key matching employeeId is found in 
-		 * employeesStocks if not create a new EmployeeStocks 
- 		 * and add to the employeesStocks with the employeeId as key
-		 */
-		if(!employeesStocks.containsKey(employeeId)){
-			employeesStocks.put(employeeId, new EmployeeRecords());
-			employeesStocks.get(employeeId).setEmployeeId(employeeId);
-		}
-		/**
 		 * find the record type being added
-		 * set the date for the record
 		 * and add the correct variables for the record
 		 * 
-		 * VEST and SALE share the same model since they both
-		 * user units and price
+		 * VEST and SALE share the same variables since they both
+		 * use units and price
 		 */
-		String recordType = split[RECORD_TYPE];
-		record.setType(recordType);
-		record.setDate(Integer.parseInt(split[RECORD_DATE]));
-		//Determine what type of record adding
-		switch(recordType){
+		switch(recordSplit[RECORD_TYPE]){
 		case TYPE_VEST:
-		case TYPE_SALE:
-			record.setUnits(Integer.parseInt(split[RECORD_UNITS]));
-			record.setPrice(Double.parseDouble(split[RECORD_PRICE]));
+		case TYPE_SALE:	
+			record.setUnits(Tools.getInt(recordSplit[RECORD_UNITS]));
+			record.setPrice(Tools.getDouble(recordSplit[RECORD_PRICE]));
 			break;
 		case TYPE_PERF:
-			record.setMulitply(Double.parseDouble(split[RECORD_MULTIPLY]));
+			record.setMulitply(Tools.getDouble(recordSplit[RECORD_MULTIPLY]));
 			break;
 		}
-		/**
-		 * get the employee from the employeesStock and add 
-		 * the record to their stock report
-		 */
-		employeesStocks.get(employeeId).addRecord(record);
+		return record;
 	}
 }

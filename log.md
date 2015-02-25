@@ -1,5 +1,11 @@
 # Log
 
+- 2015-02-24 11:00 - 15:00
+ - fixed logic in calculator
+ - added unit testing for all scenarios in pdf file
+ - added unit testing for the three major methods of calculator
+ - find unit testing to be very useful for both development time and bug finding
+
 - 2015-02-23 19:30 - 23:45
  - cleaned up objects
  - ended up created new objects 
